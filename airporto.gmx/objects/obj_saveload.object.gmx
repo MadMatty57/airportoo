@@ -43,8 +43,8 @@
             ini_write_real("wallx",string(i),instancefind.x);
             ini_write_real("wally",string(i),instancefind.y);
             ini_write_real("wallbuilt",string(i),instancefind.built);
-            ini_write_real("wallres",string(i),instancefind.retype);
-            ini_write_real("wallresquant",string(i),instancefind.requant);
+            //ini_write_real("wallres",string(i),instancefind.retype);
+            //ini_write_real("wallresquant",string(i),instancefind.requant);
         }
     }
     ini_close();
@@ -77,12 +77,12 @@ if keyboard_check_pressed(ord("L")) &amp;&amp; keyboard_check(vk_lcontrol) {
             var xx = ini_read_real("wallx",string(n),0);
             var yy = ini_read_real("wally",string(n),0);
             var wwallbuilt = ini_read_real("wallbuilt",string(n),0);
-            var rretype = ini_read_real("wallres",string(n),0);
-            var rrequant = ini_read_real("wallresquant",string(n),1);
+            //var rretype = ini_read_real("wallres",string(n),0);
+            //var rrequant = ini_read_real("wallresquant",string(n),1);
             var instanceload = instance_create(xx,yy,obj_wall);
             instanceload.built = wwallbuilt;
-            instanceload.retype = rretype;
-            instanceload.requant = rrequant;
+            //instanceload.retype = rretype;
+            //instanceload.requant = rrequant;
             if instanceload.built == false {
                 instanceload.jobid = instanceload.id
                 ds_list_add(idlist,instanceload.id);

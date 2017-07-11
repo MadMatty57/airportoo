@@ -204,7 +204,7 @@ if point_in_rectangle(x,y,scancelposx,scancelposy,ecancelposx,ecancelposy) &amp;
           <argument>
             <kind>1</kind>
             <string>///debug
-if global.debug == true {
+/*if global.debug == true {
     draw_text(x,y,id);
 }
 </string>
@@ -227,7 +227,7 @@ if global.debug == true {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>///statechange
 
 if built == true {
     solid = true;
