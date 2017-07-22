@@ -26,9 +26,12 @@
     <object>objects\obj_grid</object>
     <object>objects\obj_saveload</object>
     <object>objects\obj_item</object>
-    <object>objects\GMS</object>
-    <object>objects\obj_other_character</object>
     <object>objects\obj_mainmenu</object>
+    <object>objects\GMS</object>
+    <objects name="gms">
+      <object>objects\obj_other_character</object>
+      <object>objects\obj_player</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_init</room>

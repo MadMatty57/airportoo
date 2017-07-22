@@ -25,7 +25,96 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>screen = "mainmenu"
+server = 0; //0 = main; 1-5 = lobby;
+scroll=0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if screen == "mainmenu" {
+    if mouse_check_button_pressed(mb_left) &amp;&amp; mouse_in_region(room_width/2-200,room_height/2-25,room_width/2-10,room_height/2+25) {
+        gms_show_login();
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///scroll
+
+if screen == "joingame" {
+    if mouse_wheel_up() {
+        scroll+=50;
+    }
+    
+    if mouse_wheel_down() {
+        scroll-=50;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="25">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if gms_self_isguest() {
+    show_message("WARNING: If you login as guest, you cannot earn points for playing.");
+    screen = "joingame";
+} else {
+    screen = "joingame";
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -48,7 +137,78 @@
           <argument>
             <kind>1</kind>
             <string>draw_text(0,0,"version " + allv + " (build " + string(serverv) + ")");
-draw_rectangle_colour(room_width/2-200,room_height/2-25,room_width/2+200,room_height/2+25,c_maroon,c_maroon,c_maroon,c_maroon,false);
+draw_set_halign(fa_right);
+draw_set_valign(fa_top);
+draw_text(room_width,0,string(fps));
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+if screen == "joingame" {
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///menus
+if screen == "mainmenu" {
+    draw_rectangle_colour(room_width/2-210,room_height/2-25,room_width/2-10,room_height/2+25,c_maroon,c_maroon,c_maroon,c_maroon,false);
+    draw_rectangle_colour(room_width/2+10,room_height/2+25,room_width/2+210,room_height/2-25,c_maroon,c_maroon,c_maroon,c_maroon,false);
+    draw_set_halign(fa_middle);
+    draw_set_valign(fa_center);
+    draw_text_colour(room_width/2-110,room_height/2,"Login to play#multiplayer",c_white,c_white,c_white,c_white,1);
+    draw_text_colour(room_width/2+110,room_height/2,"Singleplayer",c_white,c_white,c_white,c_white,1);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    if server &gt; 0 {
+        draw_rectangle(room_width-110,10,room_width-10,60,false);
+    }
+} else if screen == "joingame" {
+    if server == 0 {
+        draw_rectangle(100,100+scroll,room_width-100,250+scroll,true);
+        draw_rectangle(100,100+175+scroll,room_width-100,250+175+scroll,true);
+        draw_rectangle(100,100+350+scroll,room_width-100,250+350+scroll,true);
+        draw_rectangle(100,100+525+scroll,room_width-100,250+525+scroll,true);
+        draw_rectangle(100,100+700+scroll,room_width-100,250+700+scroll,true);
+        
+        
+        draw_rectangle_colour(room_width-250,200+scroll,room_width-110,240+scroll,c_lime,c_lime,c_lime,c_lime,false);
+        draw_rectangle(room_width-250,200+scroll,room_width-110,240+scroll,true);
+        
+        draw_rectangle_colour(room_width-250,200+scroll+175,room_width-110,240+scroll+175,c_lime,c_lime,c_lime,c_lime,false);
+        draw_rectangle(room_width-250,200+scroll+175,room_width-110,240+scroll+175,true);
+        
+        draw_rectangle_colour(room_width-250,200+scroll+350,room_width-110,240+scroll+350,c_lime,c_lime,c_lime,c_lime,false);
+        draw_rectangle(room_width-250,200+scroll+350,room_width-110,240+scroll+350,true);
+        
+        draw_set_valign(fa_middle);
+        draw_set_halign(fa_center);
+        draw_text(room_width-180,220+scroll,"Join");
+        draw_text(room_width-180,220+scroll+175,"Join");
+        draw_text(room_width-180,220+scroll+350,"Join");
+        draw_set_valign(fa_left);
+        draw_set_halign(fa_top);
+
+    }
+}
 </string>
           </argument>
         </arguments>
